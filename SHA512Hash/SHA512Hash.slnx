@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="SHA512HashWpf/SHA512HashWpf.csproj">
+    <BuildDependency Project="shasmlib/shasmlib.vcxproj" />
+  </Project>
+  <Project Path="shasmlib/shasmlib.vcxproj" />
+</Solution>
