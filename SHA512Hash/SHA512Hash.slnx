@@ -7,5 +7,5 @@
   <Project Path="SHA512HashWpf/SHA512HashWpf.csproj">
     <BuildDependency Project="shasmlib/shasmlib.vcxproj" />
   </Project>
-  <Project Path="shasmlib/shasmlib.vcxproj" />
+  <Project Path="shasmlib/shasmlib.vcxproj" Id="4d1738f7-ae32-4100-bb8a-d9696b214ddb" />
 </Solution>

@@ -5,8 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SHA512HashWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="SHA512 Hash Generator" Height="600" Width="1000">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
 
+        <!-- Sekcja główna i wynik (lewa strona) -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Sekcja główna (górna) -->
+            <Border Grid.Row="0" Padding="20" Background="#F5F5F5">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Dane wejściowe:" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                    <TextBox Name="InputTextBox" Height="80" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,15" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                    <Button Content="Generuj" Height="35" Margin="0,0,0,15" Background="#007ACC" Foreground="White" FontSize="12" Cursor="Hand"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                        <CheckBox Name="UseAsmCheckBox" VerticalAlignment="Center"/>
+                        <Label Content="Użyj asemblerowej DLL-ki" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+
+                    <Label Content="Wybierz liczbę wątków:" FontSize="12" Margin="0,0,0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                        <Slider Name="ThreadsSlider" Width="200" Minimum="1" Maximum="16" Value="1" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <Label Name="ThreadCountLabel" Content="1" Width="30" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <Button Content="Haszuj!!!" Height="45" Background="#28A745" Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Sekcja wyniku (dolna) -->
+            <Border Grid.Row="1" Padding="20" Background="#EFEFEF">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Wynik:" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <Label Name="ResultLabel" Content="" FontSize="11" Background="White" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1" Height="60" Visibility="Hidden"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Sekcja Historia (prawa strona) -->
+        <Border Grid.Column="1" Padding="15" Background="#F0F0F0" BorderBrush="#D0D0D0" BorderThickness="1,0,0,0">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Historia" FontSize="16" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
+
+                <Border Padding="0,0,0,10">
+                    <DataGrid Name="HistoryDataGrid" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Lp" Binding="{Binding Index}" IsReadOnly="True" Width="40"/>
+                            <DataGridTextColumn Header="Metoda" Binding="{Binding Method}" IsReadOnly="True" Width="80"/>
+                            <DataGridTextColumn Header="Czas" Binding="{Binding Time}" IsReadOnly="True" Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
