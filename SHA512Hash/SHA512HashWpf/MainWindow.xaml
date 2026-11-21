@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SHA512HashWpf"
+        xmlns:local="clr-namespace:SHA512HashWpf" xmlns:hash="clr-namespace:SHA512HashWpf.Hash" d:DataContext="{d:DesignInstance Type=hash:HashViewModel}"
         mc:Ignorable="d"
         Title="SHA512 Hash Generator" Height="600" Width="1000">
     <Grid>
@@ -24,22 +24,22 @@
                 <StackPanel Orientation="Vertical">
                     <Label Content="Dane wejściowe:" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
 
-                    <TextBox Name="InputTextBox" Height="80" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,15" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1"/>
+                    <TextBox Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" Name="InputTextBox" Height="80" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,15" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1"/>
 
                     <Button Content="Generuj" Height="35" Margin="0,0,0,15" Background="#007ACC" Foreground="White" FontSize="12" Cursor="Hand"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-                        <CheckBox Name="UseAsmCheckBox" VerticalAlignment="Center"/>
+                        <CheckBox IsChecked="{Binding IsAsmDllChoosen}" Name="UseAsmCheckBox" VerticalAlignment="Center"/>
                         <Label Content="Użyj asemblerowej DLL-ki" VerticalAlignment="Center" Margin="5,0,0,0"/>
                     </StackPanel>
 
                     <Label Content="Wybierz liczbę wątków:" FontSize="12" Margin="0,0,0,5"/>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-                        <Slider Name="ThreadsSlider" Width="200" Minimum="1" Maximum="16" Value="1" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <Label Name="ThreadCountLabel" Content="1" Width="30" VerticalAlignment="Center"/>
+                        <Slider Name="ThreadsSlider" Value="{Binding SelectedNumberOfThreads}" Width="200" Minimum="1" Maximum="{Binding MaximumNumberOfThreads}" VerticalAlignment="Center" Margin="0,0,10,0" TickFrequency="1" IsSnapToTickEnabled="True" />
+                        <Label Name="ThreadCountLabel" Content="{Binding SelectedNumberOfThreads}" Width="30" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <Button Content="Haszuj!!!" Height="45" Background="#28A745" Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+                    <Button Command="{Binding HashCommand}" Content="Haszuj!!!" Height="45" Background="#28A745" Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
                 </StackPanel>
             </Border>
 
@@ -47,7 +47,7 @@
             <Border Grid.Row="1" Padding="20" Background="#EFEFEF">
                 <StackPanel Orientation="Vertical">
                     <Label Content="Wynik:" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
-                    <Label Name="ResultLabel" Content="" FontSize="11" Background="White" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1" Height="60" Visibility="Hidden"/>
+                    <Label Content="{Binding Output}" Name="ResultLabel" FontSize="11" Background="White" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1" Height="60" />
                 </StackPanel>
             </Border>
         </Grid>

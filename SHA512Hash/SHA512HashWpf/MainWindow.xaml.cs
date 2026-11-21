@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using SHA512HashWpf.Hash;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,7 @@ namespace SHA512HashWpf
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new HashViewModel();
         }
     }
 }
