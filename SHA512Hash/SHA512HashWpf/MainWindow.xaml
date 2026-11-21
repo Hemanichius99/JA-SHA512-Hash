@@ -20,13 +20,13 @@
             </Grid.RowDefinitions>
 
             <!-- Sekcja główna (górna) -->
-            <Border Grid.Row="0" Padding="20" Background="#F5F5F5">
+            <Border Grid.Row="0" Padding="20" Background="{StaticResource MainPanelBackgroundBrush}">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Dane wejściowe:" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <Label Content="Dane wejściowe:" FontSize="14" FontWeight="Bold" Margin="0,0,0,10" Foreground="{StaticResource BlackBrush}"/>
 
-                    <TextBox Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" Name="InputTextBox" Height="80" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,15" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1"/>
+                    <TextBox Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" Name="InputTextBox" Height="80" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,15" Padding="10" BorderBrush="{StaticResource ControlBorderBrush}" BorderThickness="1"/>
 
-                    <Button Content="Generuj" Height="35" Margin="0,0,0,15" Background="#007ACC" Foreground="White" FontSize="12" Cursor="Hand"/>
+                    <Button Content="Generuj" Height="35" Margin="0,0,0,15" Background="{StaticResource BtnPrimaryBrush}" Foreground="{StaticResource WhiteBrush}" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
                         <CheckBox IsChecked="{Binding IsAsmDllChoosen}" Name="UseAsmCheckBox" VerticalAlignment="Center"/>
@@ -39,23 +39,23 @@
                         <Label Name="ThreadCountLabel" Content="{Binding SelectedNumberOfThreads}" Width="30" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <Button Command="{Binding HashCommand}" Content="Haszuj!!!" Height="45" Background="#28A745" Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+                    <Button Command="{Binding HashCommand}" Content="Haszuj!!!" Height="35" Background="{StaticResource BtnSecondaryBrush}" Foreground="{StaticResource WhiteBrush}" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
                 </StackPanel>
             </Border>
 
             <!-- Sekcja wyniku (dolna) -->
-            <Border Grid.Row="1" Padding="20" Background="#EFEFEF">
+            <Border Grid.Row="1" Padding="20" Background="{StaticResource ResultPanelBackgroundBrush}">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Wynik:" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
-                    <Label Content="{Binding Output}" Name="ResultLabel" FontSize="11" Background="White" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1" Height="60" />
+                    <Label Content="Wynik:" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <Label Content="{Binding Output}" Name="ResultLabel" FontSize="11" Background="{StaticResource WhiteBrush}" Padding="10" BorderBrush="{StaticResource ControlBorderBrush}" BorderThickness="1" Height="60" />
                 </StackPanel>
             </Border>
         </Grid>
 
         <!-- Sekcja Historia (prawa strona) -->
-        <Border Grid.Column="1" Padding="15" Background="#F0F0F0" BorderBrush="#D0D0D0" BorderThickness="1,0,0,0">
+        <Border Grid.Column="1" Padding="15" Background="{StaticResource HistoryPanelBackgroundBrush}" BorderBrush="{StaticResource HistoryBorderBrush}" BorderThickness="1,0,0,0">
             <StackPanel Orientation="Vertical">
-                <Label Content="Historia" FontSize="16" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
+                <Label Content="Historia" FontSize="14" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
 
                 <Border Padding="0,0,0,10">
                     <DataGrid Name="HistoryDataGrid" AutoGenerateColumns="False">

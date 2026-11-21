@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="BtnPrimaryColor">#560591</Color>
+    <Color x:Key="BtnSecondaryColor">#3F3C9E</Color>
+    <Color x:Key="MainPanelBackgroundColor">#F5F5F5</Color>
+    <Color x:Key="ResultPanelBackgroundColor">#E5E5E5</Color>
+    <Color x:Key="HistoryPanelBackgroundColor">#D6D6D6</Color>
+    <Color x:Key="ControlBorderColor">#C0C0C0</Color>
+    <Color x:Key="HistoryBorderColor">#B0B0B0</Color>
+    <Color x:Key="WhiteColor">#FFFFFF</Color>
+    <Color x:Key="BlackColor">#000000</Color>
+
+    <SolidColorBrush x:Key="BtnPrimaryBrush" Color="{StaticResource BtnPrimaryColor}" />
+    <SolidColorBrush x:Key="BtnSecondaryBrush" Color="{StaticResource BtnSecondaryColor}" />
+    <SolidColorBrush x:Key="MainPanelBackgroundBrush" Color="{StaticResource MainPanelBackgroundColor}" />
+    <SolidColorBrush x:Key="ResultPanelBackgroundBrush" Color="{StaticResource ResultPanelBackgroundColor}" />
+    <SolidColorBrush x:Key="HistoryPanelBackgroundBrush" Color="{StaticResource HistoryPanelBackgroundColor}" />
+    <SolidColorBrush x:Key="ControlBorderBrush" Color="{StaticResource ControlBorderColor}" />
+    <SolidColorBrush x:Key="HistoryBorderBrush" Color="{StaticResource HistoryBorderColor}" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}" />
+
+</ResourceDictionary>
