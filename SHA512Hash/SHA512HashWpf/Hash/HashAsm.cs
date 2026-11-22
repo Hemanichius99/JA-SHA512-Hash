@@ -6,7 +6,7 @@ namespace SHA512HashWpf.Hash
 {
     internal class HashAsm : HashStrategy
     {
-        public string Hash(string input, int numberOfThreads)
+        public byte[] Hash(byte[] input, int numberOfThreads)
         {
             throw new NotImplementedException("Brak zaimplementowanego algorytmu asemblera.");
         }

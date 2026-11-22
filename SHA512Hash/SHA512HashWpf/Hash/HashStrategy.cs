@@ -6,6 +6,6 @@ namespace SHA512HashWpf.Hash
 {
     internal interface HashStrategy
     {
-        public string Hash(string input, int numberOfThreads);
+        public byte[] Hash(byte[] input, int numberOfThreads);
     }
 }

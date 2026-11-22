@@ -15,7 +15,11 @@ namespace SHA512HashWpf.Hash
 
         public string Hash(string input, int numberOfThreads)
         {
-            return _hashStrategy.Hash(input, numberOfThreads);
+            var inputAsBytes = Encoding.UTF8.GetBytes(input);
+
+            var outputAsString = Convert.ToHexString(_hashStrategy.Hash(inputAsBytes, numberOfThreads));
+
+            return outputAsString;
         }
     }
 }
