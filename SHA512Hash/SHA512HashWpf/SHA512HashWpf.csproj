@@ -17,7 +17,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Generate\" />
     <Folder Include="History\" />
   </ItemGroup>
   

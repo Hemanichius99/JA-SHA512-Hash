@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommonServiceLocator;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ namespace SHA512HashWpf.Hash
 {
     public class HashViewModel : INotifyPropertyChanged
     {
+        private const string TextsFilePath = "C:\\Users\\heman\\Documents\\Text\\news.txt";
         private string _input = string.Empty;
         private string _output = string.Empty;
         private int _numberOfThreads = 1;
@@ -68,12 +70,14 @@ namespace SHA512HashWpf.Hash
             }
         }
         public ICommand HashCommand { get; }
+        public ICommand GenerateCommand { get; }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public HashViewModel()
         {
             _hashContext = new HashContext();
             HashCommand = new RelayCommand(ComputeHash);
+            GenerateCommand = new RelayCommand(GenerateText);
         }
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -87,6 +91,19 @@ namespace SHA512HashWpf.Hash
             catch (Exception ex)
             {
                 Output = "Błąd podczas obliczania hasha: " + ex.Message;
+            }
+        }
+
+        private void GenerateText()
+        {
+            try
+            {
+                var textGenerator = new Generate.TextGenerator(TextsFilePath);
+                Input = textGenerator.getSentence();
+            }
+            catch (Exception ex)
+            {
+                Output = "Błąd podczas generowania tekstu: " + ex.Message;
             }
         }
 
