@@ -54,20 +54,25 @@
 
         <!-- Sekcja Historia (prawa strona) -->
         <Border Grid.Column="1" Padding="15" Background="{StaticResource HistoryPanelBackgroundBrush}" BorderBrush="{StaticResource HistoryBorderBrush}" BorderThickness="1,0,0,0">
-            <StackPanel Orientation="Vertical">
-                <Label Content="Historia" FontSize="14" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                <Border Padding="0,0,0,10">
-                    <DataGrid ItemsSource="{Binding History}" Name="HistoryDataGrid" AutoGenerateColumns="False">
+                <Label Grid.Row="0" Content="Historia" FontSize="14" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
+
+                <Border Grid.Row="1" Padding="0,0,0,10">
+                    <DataGrid ItemsSource="{Binding History}" Name="HistoryDataGrid" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Lp" Binding="{Binding Lp}" IsReadOnly="True" Width="40"/>
-                            <DataGridTextColumn Header="Metoda" Binding="{Binding Method}" IsReadOnly="True" Width="80"/>
-                            <DataGridTextColumn Header="Czas (ms)" Binding="{Binding TimeInMilliseconds}" IsReadOnly="True" Width="80"/>
-                            <DataGridTextColumn Header="Wątki" Binding="{Binding NumberOfThreads}" IsReadOnly="True" Width="60"/>
+                            <DataGridTextColumn Header="Lp" Binding="{Binding Lp}" IsReadOnly="True" Width="30"/>
+                            <DataGridTextColumn Header="Metoda" Binding="{Binding Method}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Czas (ms)" Binding="{Binding TimeInMilliseconds}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Wątki" Binding="{Binding NumberOfThreads}" IsReadOnly="True" Width="50"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
-            </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </Window>
