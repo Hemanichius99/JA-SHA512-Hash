@@ -11,7 +11,10 @@ namespace SHA512HashWpf.Hash
 
         public void setStrategy(HashStrategy hashStrategy)
         {
-            _hashStrategy = hashStrategy;
+            if (hashStrategy != null)
+            {
+                _hashStrategy = hashStrategy;
+            }
         }
 
         public HashResult Hash(string input, int numberOfThreads)

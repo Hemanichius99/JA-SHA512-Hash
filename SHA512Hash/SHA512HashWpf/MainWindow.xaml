@@ -62,7 +62,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Lp" Binding="{Binding Lp}" IsReadOnly="True" Width="40"/>
                             <DataGridTextColumn Header="Metoda" Binding="{Binding Method}" IsReadOnly="True" Width="80"/>
-                            <DataGridTextColumn Header="Czas" Binding="{Binding TimeInMiliseconds}" IsReadOnly="True" Width="80"/>
+                            <DataGridTextColumn Header="Czas (ms)" Binding="{Binding TimeInMilliseconds}" IsReadOnly="True" Width="80"/>
                             <DataGridTextColumn Header="Wątki" Binding="{Binding NumberOfThreads}" IsReadOnly="True" Width="60"/>
                         </DataGrid.Columns>
                     </DataGrid>
