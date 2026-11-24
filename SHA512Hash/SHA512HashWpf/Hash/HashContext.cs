@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Media;
 
 namespace SHA512HashWpf.Hash
 {
@@ -13,13 +14,36 @@ namespace SHA512HashWpf.Hash
             _hashStrategy = hashStrategy;
         }
 
-        public string Hash(string input, int numberOfThreads)
+        public HashResult Hash(string input, int numberOfThreads)
         {
-            var inputAsBytes = Encoding.UTF8.GetBytes(input);
+            byte[] inputAsBytes = Encoding.UTF8.GetBytes(input); // string -> byte[]
 
-            var outputAsString = Convert.ToHexString(_hashStrategy.Hash(inputAsBytes, numberOfThreads));
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
-            return outputAsString;
+            byte[] hashResult = _hashStrategy.Hash(inputAsBytes, numberOfThreads); // Haszowanie, tego mierzymy czas
+
+            stopwatch.Stop();
+
+            float elapsedTime = (float)stopwatch.Elapsed.TotalMilliseconds; // czas w milisekundach
+
+            string outputAsString = Convert.ToHexString(hashResult); // byte[] -> string
+
+            return new HashResult(outputAsString, elapsedTime);
+        }
+
+        public string getMethod() { 
+            if (_hashStrategy is HashCsharp)
+            {
+                return "C#";
+            }
+            else if (_hashStrategy is HashAsm)
+            {
+                return "ASM DLL";
+            }
+            else
+            {
+                return "Unknown";
+            }
         }
     }
 }

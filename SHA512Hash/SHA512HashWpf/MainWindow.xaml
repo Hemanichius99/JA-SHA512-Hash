@@ -58,11 +58,12 @@
                 <Label Content="Historia" FontSize="14" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
 
                 <Border Padding="0,0,0,10">
-                    <DataGrid Name="HistoryDataGrid" AutoGenerateColumns="False">
+                    <DataGrid ItemsSource="{Binding History}" Name="HistoryDataGrid" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Lp" Binding="{Binding Index}" IsReadOnly="True" Width="40"/>
+                            <DataGridTextColumn Header="Lp" Binding="{Binding Lp}" IsReadOnly="True" Width="40"/>
                             <DataGridTextColumn Header="Metoda" Binding="{Binding Method}" IsReadOnly="True" Width="80"/>
-                            <DataGridTextColumn Header="Czas" Binding="{Binding Time}" IsReadOnly="True" Width="80"/>
+                            <DataGridTextColumn Header="Czas" Binding="{Binding TimeInMiliseconds}" IsReadOnly="True" Width="80"/>
+                            <DataGridTextColumn Header="Wątki" Binding="{Binding NumberOfThreads}" IsReadOnly="True" Width="60"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

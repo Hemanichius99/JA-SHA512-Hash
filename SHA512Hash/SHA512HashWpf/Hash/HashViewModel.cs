@@ -1,8 +1,11 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Command;
+using SHA512HashWpf.History;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
 
@@ -16,6 +19,7 @@ namespace SHA512HashWpf.Hash
         private int _numberOfThreads = 1;
         private bool _isAsmDllChoosen = false;
         private HashContext _hashContext;
+        // private ObservableCollection<AlgoRecord> _history;
         public string Input
 
         {
@@ -73,6 +77,8 @@ namespace SHA512HashWpf.Hash
         public ICommand GenerateCommand { get; }
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        public ObservableCollection<AlgoRecord> History { get; } = new();
+
         public HashViewModel()
         {
             _hashContext = new HashContext();
@@ -86,7 +92,10 @@ namespace SHA512HashWpf.Hash
         private void ComputeHash()
         {
             try {
-                Output = _hashContext.Hash(Input, SelectedNumberOfThreads);
+                HashResult result = _hashContext.Hash(Input, SelectedNumberOfThreads);
+
+                Output = result.Hash;
+                History.Add(new AlgoRecord(_hashContext.getMethod(), result.TimeInMilliseconds, SelectedNumberOfThreads)); // TODO na razie czas = 0,001, można później dodać pomiar czasu
             }
             catch (Exception ex)
             {
@@ -107,5 +116,16 @@ namespace SHA512HashWpf.Hash
             }
         }
 
+        protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string? propertyName = null)
+        {
+            if (!Equals(field, newValue))
+            {
+                field = newValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                return true;
+            }
+
+            return false;
+        }
     }
 }

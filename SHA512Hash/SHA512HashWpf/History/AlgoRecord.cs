@@ -6,13 +6,14 @@ using System.Text;
 namespace SHA512HashWpf.History
 {
     public record AlgoRecord(
-        int lp,
-        string method,
-        float timeInMiliseconds
+        int Lp,
+        string Method,
+        float TimeInMiliseconds,
+        int NumberOfThreads
         )
     {
         private static readonly AtomicInteger algoCounter = new AtomicInteger(0);
-        public AlgoRecord(string method, float timeInMiliseconds) : this(algoCounter.IncrementAndGet(), method, timeInMiliseconds) { }
-        
+        public AlgoRecord(string Method, float TimeInMiliseconds, int NumberOfThreads) : this(algoCounter.IncrementAndGet(), Method, TimeInMiliseconds, NumberOfThreads) { }
+
     }
 }
